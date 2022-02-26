@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.project-list,
+.task-list,
+.task-view {
+  text-align: center;
+  border: 1px solid black;
+  height: 100vh;
+}
+
+.project-list > h2,
+.project-create > h2,
+.task-list > h2,
+.task-view > h2,
+.task-create > h2 {
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.task-view,
+.project-list {
+  height: 50vh;
+}
+
+/* section > h2 {
+  padding: 10px;
+  text-decoration: underline;
+} */
+
+/* PROJECTS STYLE */
+.project-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.projects {
+  display: grid;
+  gap: 10px;
+  overflow: scroll;
+}
+
+.projects > li {
+  border: 1px solid red;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+}
+
+.selected-project {
+  background: lightskyblue;
+}
+
+.project-create {
+  text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  padding: 10px;
+  margin: 10px;
+}
+
+.project-create > ul {
+  display: grid;
+  gap: 20px;
+}
+
+/* PROJECT VIEW STYLE */
+.tasks {
+  display: grid;
+  gap: 10px;
+}
+
+.tasks > li {
+  border: 1px solid red;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+}
+
+.selected-task {
+  background: lightskyblue;
+}
+
+.task-overview {
+  padding: 50px;
+}
+
+/* TASK VIEW STYLE */
+.task-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.task-view {
+  overflow: scroll;
+}
+
+.btn-complete-task {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.task-create {
+  text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  padding: 10px;
+  margin: 10px;
+}
+
+.task-create > ul {
+  display: grid;
+  gap: 20px;
+}
+
+.task-create > ul > li {
+  display: grid;
+}
+
+#task-title,
+#task-desc,
+#task-duedate,
+#task-priority,
+#task-submit {
+  justify-self: center;
+  width: 50%;
+}
+
+.task {
+  display: grid;
+  gap: 10px;
+}
+
+.task > li {
+  text-align: left;
+  border: 1px solid red;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+}

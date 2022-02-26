@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <section class="project-section">
+        <div class="project-list">
+            <h2>Projects</h2>
+            <ul class="projects">
+            </ul>
+        </div>
+        <div class="project-create">
+            <h2>Create Project</h2>
+            <ul>
+                <li>
+                    <label for="project-title">Project Title</label>
+                    <input type="text" id="project-title">
+                </li>
+                <li>
+                    <button class="btn-submit-project">SUBMIT</button>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="task-list">
+        <h2>Project View</h2>
+        <ul class="tasks">
+        </ul>
+    </section>
+    <section class="task-section">
+        <div class="task-view">
+            <h2>Task</h2>
+            <ul class="task">
+                <li class="task-view-title"></li>
+                <li class="task-view-desc"></li>
+                <li class="task-view-duedate"></li>
+                <li class="task-view-priority"></li>
+            </ul>
+            <button class="btn-complete-task">MARK AS COMPLETE</button>
+        </div>
+        <div class="task-create">
+            <h2>Create Task</h2>
+            <ul>
+                <li>
+                    <label for="task-title">Task Title</label>
+                    <input type="text" id="task-title">
+                </li>
+                <li>
+                    <label for="task-desc">Task Description</label>
+                    <input type="text" id="task-desc">
+                </li>
+                <li>
+                    <label for="task-duedate">Task DueDate</label>
+                    <input type="number" id="task-duedate">
+                </li>
+                <li>
+                    <label for="task-priority">Task Priority</label>
+                    <select name="priority" id="task-priority">
+                        <option value="low">Low</option>
+                        <option value="med">Med</option>
+                        <option value="high">High</option>
+                    </select>
+                </li>
+                <li>
+                    <button class="btn-submit-task">SUBMIT</button>
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
