@@ -1,26 +1,14 @@
-function makeTodo(title, desc, dueDate, priority) {
-  return {
-    title: title,
-    desc: desc,
-    dueDate: dueDate,
-    priority: priority,
-  };
-}
+import "./style.css";
+import { makeTodo, makeProject, removeAllChildNodes } from "./components";
 
-function makeProject(title, todoList) {
-  return {
-    title: title,
-    todoList: todoList,
-  };
-}
-
-const defaultProject = makeProject("Default Project", []);
-const defaultTodo = makeTodo("Make todo", "Delete this", 2000, "low");
+// initializing default project and todo
+const defaultTodo = makeTodo("apple", "a fruit", "1 1 21", "high");
+const defaultProject = makeProject("Fruit Basket", []);
 
 // initializing project array to display in PROJECTS
 const projectArray = [];
 
-// adding default project with default todo to project array
+// adding default project with todo to project array
 defaultProject.todoList.push(defaultTodo);
 projectArray.push(defaultProject);
 
@@ -45,7 +33,7 @@ const createTodo = () => {
   const newTodo = makeTodo(
     title.value,
     desc.value,
-    parseInt(dueDate.value),
+    dueDate.value,
     priority.value
   );
 
@@ -182,15 +170,6 @@ const deleteTask = (e) => {
 
 const completeTaskBtn = document.querySelector(".btn-complete-task");
 completeTaskBtn.addEventListener("click", deleteTask);
-
-// DOM stuff
-
-// utility -- remove all child nodes
-const removeAllChildNodes = (parent) => {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-};
 
 const switchSelectedProject = (e) => {
   const prevSelectedProject = document.querySelector(".selected-project");
