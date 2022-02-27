@@ -17,6 +17,14 @@ function makeProject(title, todoList) {
   };
 }
 
+const saveToLocalStorage = (project) => {
+  localStorage.setItem(project.title, JSON.stringify(project));
+
+  // kept for reference and future testing involving local storage
+  // const storedProject = JSON.parse(localStorage.getItem(project.title));
+  // console.log(storedProject);
+};
+
 // non-DOM utility
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
@@ -32,4 +40,4 @@ const removeAllChildNodes = (parent) => {
 //   return formattedDate;
 // }
 
-export { makeTodo, makeProject, removeAllChildNodes };
+export { makeTodo, makeProject, removeAllChildNodes, saveToLocalStorage };

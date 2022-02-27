@@ -1,5 +1,10 @@
 import "./style.css";
-import { makeTodo, makeProject, removeAllChildNodes } from "./components";
+import {
+  makeTodo,
+  makeProject,
+  removeAllChildNodes,
+  saveToLocalStorage,
+} from "./components";
 
 // initializing default project and todo
 const defaultTodo = makeTodo("apple", "a fruit", "1 1 21", "high");
@@ -11,6 +16,30 @@ const projectArray = [];
 // adding default project with todo to project array
 defaultProject.todoList.push(defaultTodo);
 projectArray.push(defaultProject);
+
+localStorage.removeItem(defaultProject);
+saveToLocalStorage(defaultProject);
+
+// adding previously saved projects in local storage to project array
+const addLocalStorageToProjectArray = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    projectArray.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+  }
+};
+
+addLocalStorageToProjectArray();
+
+// kept for reference and future testing involving local storage
+// const lookForLocalStorage = () => {
+//   console.log("local storage items:");
+//   for (let i = 0; i < localStorage.length; i++) {
+//     console.log(localStorage.key(i));
+//     console.log(localStorage.getItem(localStorage.key(i)));
+//     console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
+//   }
+// };
+
+// lookForLocalStorage();
 
 const createTodo = () => {
   // selecting inputs from DOM
@@ -61,6 +90,8 @@ const addToSelectedProject = (newTodo) => {
   projectArray.forEach((project) => {
     if (project.title === selectedProjectTitle) {
       project.todoList.push(newTodo);
+      localStorage.removeItem(project.title);
+      saveToLocalStorage(project);
     }
   });
 
@@ -161,6 +192,8 @@ const deleteTask = (e) => {
     for (let j = 0; j < projectArray[i].todoList.length; j++) {
       if (projectArray[i].todoList[j].title === taskTitle) {
         projectArray[i].todoList.splice(j, 1);
+        localStorage.removeItem(projectArray[i].title);
+        saveToLocalStorage(projectArray[i]);
       }
     }
   }
@@ -188,12 +221,19 @@ const renderProjects = () => {
   const projectsList = document.querySelector(".projects");
   removeAllChildNodes(projectsList);
 
-  projectArray.forEach((project) => {
+  for (let i = 0; i < localStorage.length; i++) {
     const projTitle = document.createElement("li");
-    projTitle.textContent = project.title;
+    projTitle.textContent = localStorage.key(i);
     projTitle.classList.add("project-title");
     projectsList.appendChild(projTitle);
-  });
+  }
+
+  //   projectArray.forEach((project) => {
+  //     const projTitle = document.createElement("li");
+  //     projTitle.textContent = project.title;
+  //     projTitle.classList.add("project-title");
+  //     projectsList.appendChild(projTitle);
+  //   });
 
   const projectTitles = document.querySelectorAll(".project-title");
 
@@ -216,6 +256,7 @@ const createProject = () => {
   const newProj = makeProject(projectTitle.value, []);
 
   projectArray.push(newProj);
+  saveToLocalStorage(newProj);
 
   projectTitle.value = "";
 
