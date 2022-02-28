@@ -246,7 +246,7 @@ renderProjects();
 
 const createProject = () => {
   const projectTitle = document.querySelector("#project-title");
-  console.log(projectTitle);
+  // console.log(projectTitle);
 
   // if any inputs are empty, end function
   if (projectTitle.value === "") {
@@ -265,3 +265,73 @@ const createProject = () => {
 
 const submitProjectBtn = document.querySelector(".btn-submit-project");
 submitProjectBtn.addEventListener("click", createProject);
+
+const deleteProject = () => {
+  const projectTitle = document.querySelector("#project-title").value;
+  let projectIndex = "";
+
+  if (projectTitle.value === "") {
+    return;
+  }
+
+  // find index of project
+  for (let i = 0; i < projectArray.length; i++) {
+    if (projectArray[i].title === projectTitle) {
+      // console.log(projectArray);
+      // console.log(i);
+      projectIndex = i;
+    }
+  }
+
+  // to ensure that it executes only if project index is found
+  if (projectIndex !== "") {
+    projectArray.splice(projectIndex, 1);
+    localStorage.removeItem(projectTitle);
+  }
+
+  // projectTitle = "";
+
+  renderProjects();
+};
+
+const deleteProjectBtn = document.querySelector(".btn-delete-project");
+deleteProjectBtn.addEventListener("click", deleteProject);
+
+const editProject = () => {
+  let projectTitle = document.querySelector("#project-title").value;
+  const selectedProjectTitle =
+    document.querySelector(".selected-project").textContent;
+  const selectedProject = findProject(selectedProjectTitle);
+  let projectIndex = "";
+
+  console.log(selectedProjectTitle);
+  console.log(projectTitle);
+  console.log(projectArray);
+
+  if (projectTitle === "") {
+    return;
+  }
+
+  for (let i = 0; i < projectArray.length; i++) {
+    if (projectArray[i].title === selectedProjectTitle) {
+      // console.log(projectArray);
+      // console.log(i);
+      projectIndex = i;
+    }
+  }
+
+  // to ensure that it executes only if project index is found
+  // if (projectIndex !== "") {
+  //   projectArray[projectIndex].title = projectTitle;
+  //   projectArray.splice(projectIndex, 1);
+  //   localStorage.removeItem(selectedProject);
+  //   saveToLocalStorage(selectedProject);
+  // }
+
+  // projectTitle = "";
+
+  renderProjects();
+};
+
+const editProjectBtn = document.querySelector(".btn-edit-project");
+editProjectBtn.addEventListener("click", editProject);
